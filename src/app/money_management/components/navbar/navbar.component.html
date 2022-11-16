@@ -1,3 +1,12 @@
-<p>
-  navbar works!
-</p>
+<mat-toolbar color="primary">
+    <span style="font-size: x-large; font-family: Arial, Helvetica, sans-serif;">
+        Money Management
+    </span>
+    <span style="flex: 1 1 auto;"></span>
+    <!-- open item_dialog-->
+    <button mat-button (click)="openDialog()">
+        <mat-icon>add</mat-icon> 
+        Add Item</button>
+</mat-toolbar>
+
+<ng-content></ng-content>
