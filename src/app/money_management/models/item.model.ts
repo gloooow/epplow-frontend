@@ -6,16 +6,18 @@ export class Item {
     public change: number;
     public tax: number;
     public type: string;
+    public account: string;
     public categories: string[];
 
-    constructor(id: number, name: string, date: Date, price: number, change: number, tax: number, type: string, categories: string[]) {
-        this.id = id;
-        this.name = name;
-        this.date = date;
-        this.price = price;
-        this.change = change;
-        this.tax = tax;
-        this.type = type;
-        this.categories = categories;
+    constructor(data: Item) {
+        this.id = data.id;
+        this.name = data.name;
+        this.date = data.date;
+        this.price = data.price;
+        this.change = data.change;
+        this.tax = data.tax;
+        this.type = data.type;
+        this.account = data.account;
+        this.categories = data.categories;
     }
 }

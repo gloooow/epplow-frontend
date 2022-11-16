@@ -1,1 +1,42 @@
-<p>item-dialog works!</p>
+<h1 mat-dialog-title>Add an item</h1>
+<form #itemForm="ngForm" (ngSubmit)="itemForm">
+    <p>
+        <mat-form-field>
+            <input matInput placeholder="Item Name" name="name" [(ngModel)]="item.name" required>
+        </mat-form-field>
+    </p>
+    <br>
+    <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Date" name="date" [(ngModel)]="item.date" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <input matInput placeholder="Price" name="price" [(ngModel)]="item.price" required>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <input matInput placeholder="Change" name="change" [(ngModel)]="item.change" required>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <input matInput placeholder="Tax" name="tax" [(ngModel)]="item.tax" required>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <mat-select placeholder="Type" name="type" [(ngModel)]="item.type" required>
+            <mat-option value="EXPENSE">Expense</mat-option>
+            <mat-option value="INCOME">Income</mat-option>
+            <mat-option value="TRANSFER">Transfer</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <mat-select placeholder="Account" name="account" [(ngModel)]="item.account" required>
+            <mat-option value="CASH">Cash</mat-option>
+            <mat-option value="CREDIT">Credit</mat-option>
+            <mat-option value="DEBIT">Debit</mat-option>
+        </mat-select>
+    </mat-form-field>
+</form>

@@ -17,7 +17,7 @@ export class NavbarComponent implements OnInit {
   }
 
   openDialog() {
-    this.dialog.open(ItemDialogComponent);
+    this.dialog.open(ItemDialogComponent, {
+    });
   }
-
 }
