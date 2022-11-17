@@ -7,7 +7,7 @@ export class Item {
     public tax: number;
     public type: string;
     public account: string;
-    public categories: string[];
+    public categories: string;
 
     constructor(data: Item) {
         this.id = data.id;

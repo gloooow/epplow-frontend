@@ -21,6 +21,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -36,7 +40,9 @@ import { MatSelectModule } from '@angular/material/select';
     BrowserAnimationsModule,
     Items_moduleModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
+    MatAutocompleteModule,
 
     MatToolbarModule,
     MatIconModule,
@@ -48,6 +54,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatNativeDateModule,
     MatInputModule,
     MatSelectModule,
+    MatChipsModule,
+    MatGridListModule,
   ],
   providers: [
     MatDatepickerModule,

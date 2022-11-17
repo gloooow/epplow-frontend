@@ -1,9 +1,9 @@
-class Account{
-    id: number;
-    name: string;
-    balance: number;
-    currency: string;
-    code: number;
+export class Account{
+    public id: number;
+    public name: string;
+    public balance: number;
+    public currency: string;
+    public code: number;
 
     constructor(data: Account){
         this.id = data.id;
