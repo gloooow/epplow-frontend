@@ -1,1 +1,47 @@
-<p>items works!</p>
+<!-- TODO: add color depending on if it's exepnse or income -->
+<table mat-table [dataSource]="dataSource" style="width: 100%;">
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell style="width: 10%;" *matCellDef="let element"> {{ element.name }} </td>
+    </ng-container>
+    <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> Date </th>
+        <td mat-cell style="width: 10%;" *matCellDef="let element"> {{ element.date }} </td>
+    </ng-container>
+    <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef> Price </th>
+        <td mat-cell style="width: 10%;" *matCellDef="let element"> {{ element.price }} </td>
+    </ng-container>
+    <ng-container matColumnDef="spare">
+        <th mat-header-cell *matHeaderCellDef> Spare </th>
+        <td mat-cell style="width: 10%;" *matCellDef="let element"> {{ element.spare }} </td>
+    </ng-container>
+    <ng-container matColumnDef="tax">
+        <th mat-header-cell *matHeaderCellDef> Tax </th>
+        <td mat-cell style="width: 10%;" *matCellDef="let element"> {{ element.tax }} </td>
+    </ng-container>
+    <ng-container matColumnDef="total">
+        <th mat-header-cell *matHeaderCellDef> Total </th>
+        <td mat-cell style="width: 10%;" *matCellDef="let element"> {{ element.total }} </td>
+    </ng-container>
+    <ng-container matColumnDef="currency">
+        <th mat-header-cell *matHeaderCellDef> Currency </th>
+        <td mat-cell style="width: 10%;" *matCellDef="let element"> {{ element.currency }} </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef style=> Type </th>
+        <td mat-cell style="width: 10%;" *matCellDef="let element"> {{ element.type }} </td>
+    </ng-container>
+    <ng-container matColumnDef="account">
+        <th mat-header-cell *matHeaderCellDef> Account </th>
+        <td mat-cell style="width: 10%;" *matCellDef="let element"> {{ element.account }} </td>
+    </ng-container>
+    <ng-container matColumnDef="categories">
+        <th mat-header-cell *matHeaderCellDef> Categories </th>
+        <td mat-cell style="width: 10%;" *matCellDef="let element"> {{ element.categories }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

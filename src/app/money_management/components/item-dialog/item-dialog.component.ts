@@ -36,8 +36,10 @@ export class ItemDialogComponent implements OnInit {
     date: new Date(),
     change: 0,
     tax: 0,
+    total: 0,
+    currency: '',
     type: 'Expense',
-    account: '',
+    account: 0,
     categories: '',
   };
 
@@ -57,7 +59,7 @@ export class ItemDialogComponent implements OnInit {
     this.loadCategories();
   }
   onSubmit(form: NgForm) {
-    
+    form.value.total = form.value.price + form.value.tax;
     this.itemService.addItem(form.value).subscribe(item => {
       this.dialogRef.close();
     });
