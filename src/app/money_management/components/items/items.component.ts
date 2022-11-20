@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs';
 import { Account } from '../../models/account.model';
 import { Category } from '../../models/category.model';
 import { Item } from '../../models/item.model';
@@ -14,7 +15,23 @@ import { ItemService } from '../../services/item.service';
 export class ItemsComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'date', 'price', 'spare', 'tax', 'total', 'currency', 'type', 'account', 'categories'];
-  dataSource = this.itemService.items;
+  dataSource = this.itemService.items.pipe(map(items => {
+    return items.map(item => {
+      return {
+        id: item.id,
+        name: item.name,
+        date: item.date,
+        price: item.price,
+        spare: item.change,
+        tax: item.tax,
+        total: item.total,
+        currency: item.currency,
+        type: item.type,
+        account: this.accountService.getAccountName(item.account),
+        categories: this.categoryService.getCategoryName(item.categories),
+        }});
+      }));
+
 
   accounts: Account[] = new Array<Account>;
   categories: Category[] = new Array<Category>();

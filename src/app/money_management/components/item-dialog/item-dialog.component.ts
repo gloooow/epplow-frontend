@@ -40,7 +40,7 @@ export class ItemDialogComponent implements OnInit {
     currency: '',
     type: 'Expense',
     account: 0,
-    categories: '',
+    categories: 0,
   };
 
   constructor(

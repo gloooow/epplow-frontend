@@ -19,4 +19,14 @@ export class AccountService {
   get accounts() {
     return this.accounts$.asObservable().pipe(filter(account => account !== null));
   }
+
+  getAccountName(id: number): string {
+    let name: string = '';
+    this.accounts$.getValue().forEach(account => {
+      if (account.id === id) {
+        name = account.name;
+      }
+    });
+    return name;
+  }
 }

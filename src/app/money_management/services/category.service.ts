@@ -19,4 +19,14 @@ export class CategoryService {
     get categories() {
       return this.categories$.asObservable().pipe(filter(category => category !== null));
     }
+
+    getCategoryName(id: number): string {
+      let name: string = '';
+      this.categories$.getValue().forEach(category => {
+        if (category.id === id) {
+          name = category.name;
+        }
+      });
+      return name;
+    }
 }
