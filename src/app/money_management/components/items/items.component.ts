@@ -31,7 +31,7 @@ export class ItemsComponent implements OnInit {
     this.loadCategories();
     this.loadItems();
   }
-  //TODO: Somehow get the account name from the account id 
+
   loadAccounts(){
     this.accountService.accounts.subscribe(accounts => {
       this.accounts = accounts;
@@ -48,5 +48,12 @@ export class ItemsComponent implements OnInit {
     this.itemService.items.subscribe(items => {
       this.items = items;
     });
+  }
+
+  getAccountName(id: number) {
+    return this.accounts.find(account => account.id === id)?.name;
+  }
+  getCategoryNames(categories: number) {
+    return this.categories.find(category => category.id === categories)?.name;
   }
 }
