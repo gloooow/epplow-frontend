@@ -49,4 +49,13 @@ export class ItemsComponent implements OnInit {
       this.items = items;
     });
   }
+  getAccountName(id: number) {
+    return this.accounts.find(account => account.id === id)?.name;
+  }
+  getCategoryNames(categories: number) {
+    return this.categories.find(category => category.id === categories)?.name;
+  }
+  getCurrencyName(id: number) {
+    return this.accounts.find(account => account.id === id)?.currency;
+  }
 }

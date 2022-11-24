@@ -27,27 +27,9 @@ constructor(
     });
   }
   get items() {
-    return this.items$.asObservable().pipe(filter(item => {
-      this.accounts.forEach(account => {
-        item.forEach(item => {
-          if (item.account == account.id) {
-            item.currency = account.currency;
-          }
-        });
-      });
-      return item !== null;
-    }));
+    return this.items$.asObservable().pipe(filter(item => item !== null));
   }
   addItem(item: Item): Observable<Item> {
     return this.http.post<Item>('http://localhost:8000/items/', item);
   }
-  // assign item.currency to account.currency
-  assignCurrency(item: Item) {
-    this.accounts.forEach(account => {
-      if (item.account == account.id) {
-        item.currency = account.currency;
-      }
-    });
-  }
-  
 }

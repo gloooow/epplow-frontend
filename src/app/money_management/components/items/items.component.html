@@ -26,7 +26,7 @@
     </ng-container>
     <ng-container matColumnDef="currency">
         <th mat-header-cell *matHeaderCellDef> Currency </th>
-        <td mat-cell style="width: 10%;" *matCellDef="let element"> {{ element.currency }} </td>
+        <td mat-cell style="width: 10%;" *matCellDef="let element"> {{ getCurrencyName(element.account) }} </td>
     </ng-container>
     
     <ng-container matColumnDef="type">
@@ -35,11 +35,11 @@
     </ng-container>
     <ng-container matColumnDef="account">
         <th mat-header-cell *matHeaderCellDef> Account </th>
-        <td mat-cell style="width: 10%;" *matCellDef="let element"> {{ element.account }} </td>
+        <td mat-cell style="width: 10%;" *matCellDef="let element"> {{ getAccountName(element.account) }} </td>
     </ng-container>
     <ng-container matColumnDef="categories">
         <th mat-header-cell *matHeaderCellDef> Categories </th>
-        <td mat-cell style="width: 10%;" *matCellDef="let element"> {{ element.categories }} </td>
+        <td mat-cell style="width: 10%;" *matCellDef="let element"> {{ getCategoryNames(element.categories) }} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
