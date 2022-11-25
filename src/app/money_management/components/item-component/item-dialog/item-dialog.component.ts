@@ -59,7 +59,10 @@ export class ItemDialogComponent implements OnInit {
     this.loadCategories();
   }
   onSubmit(form: NgForm) {
-    form.value.total = form.value.price + form.value.tax;
+    form.value.total = (form.value.price + form.value.tax + form.value.change);
+    if(form.value.type === 'EXPENSE'){
+      form.value.total = -form.value.total;
+    }
     this.itemService.addItem(form.value).subscribe(item => {
       this.dialogRef.close();
     });

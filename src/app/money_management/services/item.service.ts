@@ -12,7 +12,7 @@ import { Account } from '../models/account.model';
 export class ItemService {
 
   private items$: BehaviorSubject<Item[]> = new BehaviorSubject<Item[]>([]);
-  accounts: Account[] = new Array<Account>();
+  private accounts: Account[] = new Array<Account>();
 
 constructor(
   private http:HttpClient,
@@ -30,6 +30,12 @@ constructor(
     return this.items$.asObservable().pipe(filter(item => item !== null));
   }
   addItem(item: Item): Observable<Item> {
+    // modify balance of account then update account
+    const account = this.accounts.find(a => a.id === item.account);
+    if(account != undefined){
+      account.balance += item.total;
+      this.accountService.updateAccount(account);
+    }
     return this.http.post<Item>('http://localhost:8000/items/', item);
   }
 }

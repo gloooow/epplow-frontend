@@ -19,4 +19,18 @@ export class AccountService {
   get accounts() {
     return this.accounts$.asObservable().pipe(filter(account => account !== null));
   }
+  
+  updateAccount(account: Account) {
+    try{
+      this.http.put<Account>(`http://localhost:8000/accounts/${account.id}/`, account).subscribe(account => {
+        const accounts = this.accounts$.getValue();
+        const index = accounts.findIndex(a => a.id === account.id);
+        accounts[index] = account;
+        this.accounts$.next(accounts);
+      });
+    }
+    catch(e) {
+      console.log(e);
+    }
+  }
 }
