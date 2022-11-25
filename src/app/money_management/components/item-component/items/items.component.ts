@@ -10,27 +10,41 @@ import { ItemService } from 'src/app/money_management/services/item.service';
 @Component({
   selector: 'app-items',
   templateUrl: './items.component.html',
-  styleUrls: ['./items.component.sass']
+  styleUrls: ['./items.component.css']
 })
 export class ItemsComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'date', 'price', 'spare', 'tax', 'total', 'currency', 'type', 'account', 'categories'];
-  dataSource = this.itemService.items;
+  // dataSource = this.itemService.items;
+  dataSource: Item[] = [];
 
   accounts: Account[] = new Array<Account>;
   categories: Category[] = new Array<Category>();
   items: Item[] = new Array<Item>();
+  types: String[] = ['EXPENSE', 'INCOME', 'TRANSFER'];
+
+  filter = {
+    name: '',
+    currency: 0,
+    type: 0,
+    account: 0,
+    categories: 0,
+  }
   
   constructor(
     private itemService: ItemService,
     private accountService: AccountService,
     private categoryService: CategoryService,
+
   ) { }
 
   ngOnInit(): void {
     this.loadAccounts();
     this.loadCategories();
-    this.loadItems();
+
+    this.itemService.getAll(this.filter).subscribe(items => {
+      this.dataSource = items;
+    });
   }
   //TODO: Somehow get the account name from the account id 
   loadAccounts(){
@@ -45,11 +59,6 @@ export class ItemsComponent implements OnInit {
     });  
   }
 
-  loadItems() {
-    this.itemService.items.subscribe(items => {
-      this.items = items;
-    });
-  }
   getAccountName(id: number) {
     return this.accounts.find(account => account.id === id)?.name;
   }
@@ -58,5 +67,19 @@ export class ItemsComponent implements OnInit {
   }
   getCurrencyName(id: number) {
     return this.accounts.find(account => account.id === id)?.currency;
+  }
+
+  searchItem(lClearSearch = false){
+    console.log(this.filter);
+    if(lClearSearch){
+      this.filter = {
+        name: '',
+        currency: 0,
+        type: 0,
+        account: 0,
+        categories: 0,
+      }
+    }
+    this.ngOnInit();
   }
 }

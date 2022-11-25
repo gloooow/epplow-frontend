@@ -1,0 +1,9 @@
+.action-toolbar {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.24);
+  z-index: 2;
+  top: 0px;
+  position: sticky;
+  position: -webkit-sticky;
+  display: flex;
+  justify-content: flex-end;
+}

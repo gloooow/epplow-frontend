@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ViewChild } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -28,6 +28,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ItemsComponent } from './money_management/components/item-component/items/items.component';
 import { AccountsComponent } from './money_management/components/account-component/accounts/accounts.component';
+import {MatSidenav, MatSidenavModule} from '@angular/material/sidenav';
+
 
 @NgModule({
   declarations: [
@@ -62,10 +64,11 @@ import { AccountsComponent } from './money_management/components/account-compone
     MatChipsModule,
     MatGridListModule,
     MatTabsModule,
+    MatSidenavModule,
   ],
   providers: [
     MatDatepickerModule,
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

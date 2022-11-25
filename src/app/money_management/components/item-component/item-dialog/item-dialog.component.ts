@@ -34,7 +34,7 @@ export class ItemDialogComponent implements OnInit {
     name: '',
     price: 0,
     date: new Date(),
-    change: 0,
+    spare: 0,
     tax: 0,
     total: 0,
     currency: '',
@@ -59,7 +59,7 @@ export class ItemDialogComponent implements OnInit {
     this.loadCategories();
   }
   onSubmit(form: NgForm) {
-    form.value.total = (form.value.price + form.value.tax + form.value.change);
+    form.value.total = (form.value.price + form.value.tax + form.value.spare).toFixed(2);
     if(form.value.type === 'EXPENSE'){
       form.value.total = -form.value.total;
     }
