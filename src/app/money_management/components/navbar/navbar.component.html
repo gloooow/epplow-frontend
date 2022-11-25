@@ -3,10 +3,19 @@
         Money Management
     </span>
     <span style="flex: 1 1 auto;"></span>
+    <button mat-flat-button color="primary" routerLink="/money-management/items">
+        Items
+    </button>
+    <button mat-flat-button color="primary" routerLink="/money-management/accounts">
+        Accounts
+    </button>
+    <span style="flex: 1 1 auto;"></span>
     <!-- open item_dialog-->
-    <button mat-button (click)="openDialog()">
+    <button mat-flat-button color="primary" (click)="openDialog()">
         <mat-icon>add</mat-icon> 
-        Add Item</button>
+        Add Item
+    </button>
+    
 </mat-toolbar>
 
 <ng-content></ng-content>

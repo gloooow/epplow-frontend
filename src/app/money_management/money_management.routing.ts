@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ItemsComponent } from './components/items/items.component';
+import { AccountsComponent } from './components/account-component/accounts/accounts.component';
+import { ItemsComponent } from './components/item-component/items/items.component';
+
 
 const routes: Routes = [
   { path: 'money-management', children: [
-    { path: '', component: ItemsComponent, },
+    { path: 'items', component: ItemsComponent, },
+    { path: 'accounts', component: AccountsComponent, },
    ] },
 ];
 

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ItemDialogComponent } from '../item-dialog/item-dialog.component';
+import { ItemDialogComponent } from '../item-component/item-dialog/item-dialog.component';
 
 @Component({
   selector: 'app-navbar',

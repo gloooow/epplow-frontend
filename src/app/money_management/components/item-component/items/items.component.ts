@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Account } from '../../models/account.model';
-import { Category } from '../../models/category.model';
-import { Item } from '../../models/item.model';
-import { AccountService } from '../../services/account.service';
-import { CategoryService } from '../../services/category.service';
-import { ItemService } from '../../services/item.service';
+import { Account } from 'src/app/money_management/models/account.model';
+import { Category } from 'src/app/money_management/models/category.model';
+import { Item } from 'src/app/money_management/models/item.model';
+import { AccountService } from 'src/app/money_management/services/account.service';
+import { CategoryService } from 'src/app/money_management/services/category.service';
+import { ItemService } from 'src/app/money_management/services/item.service';
+
 
 @Component({
   selector: 'app-items',

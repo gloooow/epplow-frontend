@@ -1,0 +1,20 @@
+<table mat-table [dataSource]="dataSource" style="width: 100%;">
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell style="width: 10%;" *matCellDef="let element"> {{ element.name }} </td>
+    </ng-container>
+    <ng-container matColumnDef="balance">
+        <th mat-header-cell *matHeaderCellDef> Balance </th>
+        <td mat-cell style="width: 10%;" *matCellDef="let element"> {{ element.balance }} </td>
+    </ng-container>
+    <ng-container matColumnDef="currency">
+        <th mat-header-cell *matHeaderCellDef> Currency </th>
+        <td mat-cell style="width: 10%;" *matCellDef="let element"> {{ element.currency }} </td>
+    </ng-container>
+    <ng-container matColumnDef="code">
+        <th mat-header-cell *matHeaderCellDef> Code </th>
+        <td mat-cell style="width: 10%;" *matCellDef="let element"> {{ element.code }} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
