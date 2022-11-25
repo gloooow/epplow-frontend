@@ -82,4 +82,5 @@ export class ItemsComponent implements OnInit {
     }
     this.ngOnInit();
   }
+  
 }
