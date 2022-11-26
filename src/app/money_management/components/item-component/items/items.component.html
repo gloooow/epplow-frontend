@@ -39,7 +39,7 @@
             name="account"
             (ngModelChange)="searchItem()"
             >
-            <mat-option *ngFor="let account of accounts" [value]="account.code">
+            <mat-option *ngFor="let account of accounts" [value]="account.id">
                 {{ account.name }}
             </mat-option>
             </mat-select>
@@ -104,7 +104,7 @@
         </ng-container>
         <ng-container matColumnDef="total">
             <th mat-header-cell *matHeaderCellDef> Total </th>
-            <td mat-cell style="width: 8%;" *matCellDef="let element"> {{ element.total }} </td>
+            <td mat-cell style="width: 8%;" *matCellDef="let element"> {{ element.total.toFixed(2) }} </td>
         </ng-container>
         <ng-container matColumnDef="currency">
             <th mat-header-cell *matHeaderCellDef> Currency </th>
