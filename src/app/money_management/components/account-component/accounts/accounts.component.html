@@ -1,3 +1,12 @@
+<mat-toolbar class="search-toolbar" color="primary">
+    <!-- show total ammount of money -->
+    <div class="toolbar-item">
+        <span class="total-amount">
+            Total: {{ total }} RON
+        </span>
+    </div>
+</mat-toolbar>
+
 <table mat-table [dataSource]="dataSource" style="width: 100%;">
     <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Name </th>
@@ -10,6 +19,10 @@
     <ng-container matColumnDef="currency">
         <th mat-header-cell *matHeaderCellDef> Currency </th>
         <td mat-cell style="width: 10%;" *matCellDef="let element"> {{ element.currency }} </td>
+    </ng-container>
+    <ng-container matColumnDef="equivalent">
+        <th mat-header-cell *matHeaderCellDef> Equivalent </th>
+        <td mat-cell style="width: 10%;" *matCellDef="let element"> {{ element.rate }} </td>
     </ng-container>
     <ng-container matColumnDef="code">
         <th mat-header-cell *matHeaderCellDef> Code </th>

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, filter } from 'rxjs';
-import { Account } from '../models/account.model';
+import { Account, ConvertionRate } from '../models/account.model';
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +32,9 @@ export class AccountService {
     catch(e) {
       console.log(e);
     }
+  }
+
+  getConversionRate(symbol: string) {
+    return this.http.get(`https://api.exchangerate.host/latest?base=${symbol}&symbols=RON`);
   }
 }

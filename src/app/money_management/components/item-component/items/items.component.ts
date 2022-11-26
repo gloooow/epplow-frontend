@@ -1,3 +1,4 @@
+import { SelectionModel } from '@angular/cdk/collections';
 import { Component, OnInit } from '@angular/core';
 import { Account } from 'src/app/money_management/models/account.model';
 import { Category } from 'src/app/money_management/models/category.model';
@@ -14,7 +15,7 @@ import { ItemService } from 'src/app/money_management/services/item.service';
 })
 export class ItemsComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'date', 'price', 'spare', 'tax', 'total', 'currency', 'type', 'account', 'categories'];
+  displayedColumns: string[] = ['select', 'name', 'date', 'price', 'spare', 'tax', 'total', 'currency', 'type', 'account', 'categories'];
   // dataSource = this.itemService.items;
   dataSource: Item[] = [];
 
@@ -82,5 +83,30 @@ export class ItemsComponent implements OnInit {
     }
     this.ngOnInit();
   }
-  
+  selection = new SelectionModel<Item>(true, []);
+
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  toggleAllRows() {
+    if (this.isAllSelected()) {
+      this.selection.clear();
+      return;
+    }
+
+    this.selection.select(...this.dataSource.map(row => row));
+  }
+
+  /** The label for the checkbox on the passed row */
+  checkboxLabel(row?: Item): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
+  }
 }

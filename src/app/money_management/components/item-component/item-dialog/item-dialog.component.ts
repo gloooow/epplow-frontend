@@ -1,7 +1,6 @@
-import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, NgForm } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { map, Observable, startWith } from 'rxjs';
 import { AccountCode } from '../../../models/account-code.model';
 import { Account } from '../../../models/account.model';
 import { Category } from '../../../models/category.model';
@@ -10,10 +9,7 @@ import { AccountCodeService } from '../../../services/account-code.service';
 import { AccountService } from '../../../services/account.service';
 import { CategoryService } from '../../../services/category.service';
 import { ItemService } from '../../../services/item.service';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { MatChipInputEvent } from '@angular/material/chips';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import { formatNumber } from '@angular/common';
 
 @Component({
   selector: 'app-item-dialog',

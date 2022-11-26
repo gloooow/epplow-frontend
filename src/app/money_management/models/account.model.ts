@@ -3,6 +3,7 @@ export class Account{
     public name: string;
     public balance: number;
     public currency: string;
+    public rate: number;
     public code: number;
 
     constructor(data: Account){
@@ -10,6 +11,19 @@ export class Account{
         this.name = data.name;
         this.balance = data.balance;
         this.currency = data.currency;
+        this.rate = data.rate;
         this.code = data.code;
+    }
+}
+
+export class ConvertionRate{
+    public rates: any;
+    public base: string;
+    public date: string;
+
+    constructor(data: ConvertionRate){
+        this.rates = data.rates;
+        this.base = data.base;
+        this.date = data.date;
     }
 }

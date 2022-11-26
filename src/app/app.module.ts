@@ -28,8 +28,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ItemsComponent } from './money_management/components/item-component/items/items.component';
 import { AccountsComponent } from './money_management/components/account-component/accounts/accounts.component';
-import {MatSidenav, MatSidenavModule} from '@angular/material/sidenav';
-
+import { MatSidenavModule} from '@angular/material/sidenav';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -65,6 +65,7 @@ import {MatSidenav, MatSidenavModule} from '@angular/material/sidenav';
     MatGridListModule,
     MatTabsModule,
     MatSidenavModule,
+    MatCheckboxModule,
   ],
   providers: [
     MatDatepickerModule,
