@@ -1,0 +1,49 @@
+  .action-button {
+    margin-left: 15px;
+    text-decoration: none;
+  }
+  
+  .call-list-container {
+    margin: 10px;
+  }
+  
+  .toolbar-spacer {
+    flex: 1 1 auto;
+  }
+  
+  .search-toolbar {
+    z-index: 2;
+    top: 0px;
+    position: sticky;
+    position: -webkit-sticky;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .toolbar-item {
+    margin-left: 15px;
+    font-size: 14px;
+    padding-bottom: 0px;
+  }
+  
+  .toggle {
+    color: darkslateblue;
+    margin-right: 15px;
+    margin-left: 15px;
+    font-size: small;
+  }
+  
+  tr.mat-row:hover {
+      background-color: #b4b4b433;
+      cursor: pointer;
+  }
+  
+  ::ng-deep .mat-form-field-wrapper {
+    padding-bottom: 0px;
+    font-size: 14px;
+  }
+  
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+    padding: 8px;
+  }
+  

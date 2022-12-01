@@ -9,6 +9,6 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'epplow-frontend';
   constructor(private router: Router) {
-    this.router.navigate(['/money-management']);
+    this.router.navigate(['/money-management/items']);
   }
 }
