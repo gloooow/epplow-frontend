@@ -13,7 +13,7 @@ export class Item {
     public currency: string;
     public type: string;
     public account: number;
-    public categories: string;
+    public categories: number;
 
     constructor(data: Item) {
         this.id = data.id;

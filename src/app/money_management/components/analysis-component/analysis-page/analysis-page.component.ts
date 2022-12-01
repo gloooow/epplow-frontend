@@ -30,7 +30,7 @@ export class AnalysisPageComponent implements OnInit {
       this.items = items;
       this.items.forEach(item => {
         const date = new Date(item.date);
-        if(item.type == 'EXPENSE' && item.categories != '8') {
+        if(item.type == 'EXPENSE' && item.categories != 8) {
           this.itemsPerDay[date.getDate()] += item.total*(-1);
         }
       }
