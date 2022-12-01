@@ -62,10 +62,12 @@ export class ItemDialogComponent implements OnInit {
     this.loadCategories();
   }
   onSubmit(form: NgForm) {
+    form.value.date = form.value.date.toISOString().slice(0, 10);
     if(form.value.type === 'TRANSFER') {
       this.itemService.transfer(this.from, this.to, form.value.price, form.value);
     }
     else{
+      
       if(form.value.type === 'EXPENSE'){
         this.minus = -1;
       }

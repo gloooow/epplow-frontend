@@ -28,6 +28,7 @@ export class ItemsComponent implements OnInit {
 
   filter = {
     name: '',
+    date: new Date().toISOString().slice(0, 10),
     currency: 0,
     type: 0,
     account: 0,
@@ -46,7 +47,6 @@ export class ItemsComponent implements OnInit {
     this.loadCategories();
     this.loadItems();
   }
-  //TODO: Somehow get the account name from the account id 
   loadAccounts(){
     this.accountService.accounts.subscribe(accounts => {
       this.accounts = accounts;
@@ -82,6 +82,7 @@ export class ItemsComponent implements OnInit {
     if(lClearSearch){
       this.filter = {
         name: '',
+        date: new Date().toISOString().slice(0, 10),
         currency: 0,
         type: 0,
         account: 0,
