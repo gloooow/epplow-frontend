@@ -16,6 +16,19 @@
             placeholder="Name"
             />
         </mat-form-field>
+        <!-- search by date -->
+        <mat-form-field class="toolbar-item" appearance="outline">
+            <mat-label> Date </mat-label>
+            <input
+            matInput
+            type="date"
+            id="date"
+            [(ngModel)]="filter.date"
+            name="date"
+            (ngModelChange)="searchItem()"
+            placeholder="Date"
+            />
+        </mat-form-field>
         <!-- search by type -->
         <mat-form-field class="toolbar-item" appearance="outline">
             <mat-label> Type </mat-label>
