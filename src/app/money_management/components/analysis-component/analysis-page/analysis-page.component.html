@@ -1,0 +1,12 @@
+
+<!-- TODO: add select fields to let the user choose between the months in the item dataset -->
+<!-- TODO: add filtering față de celelate filtre de la cautarea din pagina items -->
+<!-- TODO: 3 parti ale paginii, una cu grafic filtrat, una generala cu statistics despre grafic si una despre luna selectata -->
+<!-- TODO: Sa adaug la grafic si incasarile si transferurile -->
+<div style="display: flex; justify-content: center;">
+    <button mat-flat-button color="primary" style="margin-top: 10px;" (click)="createChart()">Show Chart</button>
+</div>
+<br>
+<div style="width: auto;">
+    <canvas id="chart" > {{ chart }} </canvas>
+</div>

@@ -30,6 +30,7 @@ import { ItemsComponent } from './money_management/components/item-component/ite
 import { AccountsComponent } from './money_management/components/account-component/accounts/accounts.component';
 import { MatSidenavModule} from '@angular/material/sidenav';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { AnalysisPageComponent } from './money_management/components/analysis-component/analysis-page/analysis-page.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     NavbarComponent,
     ItemDialogComponent,
     AccountsComponent,
+    AnalysisPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,6 +71,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
   ],
   providers: [
     MatDatepickerModule,
+    ItemsComponent,
   ],
   bootstrap: [AppComponent]
 })

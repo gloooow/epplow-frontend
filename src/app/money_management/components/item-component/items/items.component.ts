@@ -1,5 +1,6 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { Component, OnInit } from '@angular/core';
+import { lastValueFrom, map } from 'rxjs';
 import { Account } from 'src/app/money_management/models/account.model';
 import { Category } from 'src/app/money_management/models/category.model';
 import { Item } from 'src/app/money_management/models/item.model';
@@ -14,6 +15,7 @@ import { ItemService } from 'src/app/money_management/services/item.service';
   styleUrls: ['./items.component.css']
 })
 export class ItemsComponent implements OnInit {
+  isIndeterminateValue: boolean = false;
 
   displayedColumns: string[] = ['select', 'name', 'date', 'price', 'spare', 'tax', 'total', 'currency', 'type', 'account', 'categories'];
   // dataSource = this.itemService.items;
@@ -42,10 +44,7 @@ export class ItemsComponent implements OnInit {
   ngOnInit(): void {
     this.loadAccounts();
     this.loadCategories();
-
-    this.itemService.getAll(this.filter).subscribe(items => {
-      this.dataSource = items;
-    });
+    this.loadItems();
   }
   //TODO: Somehow get the account name from the account id 
   loadAccounts(){
@@ -60,6 +59,14 @@ export class ItemsComponent implements OnInit {
     });  
   }
 
+  loadItems() {
+    this.itemService.getAll(this.filter).subscribe(items => {
+      this.dataSource = items;
+      this.dataSource = this.dataSource.map(item => {
+        return item;
+      });
+    });
+  }
   getAccountName(id: number) {
     return this.accounts.find(account => account.id === id)?.name;
   }
@@ -81,32 +88,55 @@ export class ItemsComponent implements OnInit {
         categories: 0,
       }
     }
-    this.ngOnInit();
+    this.loadItems();
   }
-  selection = new SelectionModel<Item>(true, []);
-
+  filteredItemNr: number = 0;
+  intermediateItemNr: number = 0;
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
-    const numSelected = this.selection.selected.length;
+    this.itemService.items.subscribe(items => {
+      this.filteredItemNr = items.filter(item => {
+        return item.selected;
+      }).length;
+      return this.filteredItemNr
+    });
     const numRows = this.dataSource.length;
-    return numSelected === numRows;
+    return this.filteredItemNr === numRows && this.filteredItemNr > 0;
   }
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
   toggleAllRows() {
     if (this.isAllSelected()) {
-      this.selection.clear();
+      this.dataSource.forEach(row => {
+        row.selected = !row.selected;
+        this.itemService.updateItem(row).subscribe();
+      });
       return;
     }
 
-    this.selection.select(...this.dataSource.map(row => row));
+    this.dataSource.forEach(row => {
+      row.selected = true;
+      this.itemService.updateItem(row).subscribe();
+    });
+  }
+  // check if indeterminate state should be shown
+  isIndeterminate() {
+    this.itemService.items.subscribe(items => {
+      this.intermediateItemNr = items.filter(item => {
+        return item.selected;
+      }).length;
+      return this.intermediateItemNr
+    });
+    const numRows = this.dataSource.length;
+    return this.intermediateItemNr > 0 && this.intermediateItemNr < numRows;
   }
 
-  /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: Item): string {
-    if (!row) {
-      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
-    }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
+  async toggleRow(row: Item) {
+    row.selected = !row.selected;
+    await lastValueFrom(this.itemService.updateItem(row)).then(() => {
+      this.loadItems();
+      this.isIndeterminate();
+      this.isAllSelected()
+    });
   }
 }

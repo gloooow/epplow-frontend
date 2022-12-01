@@ -3,6 +3,7 @@ import { Account } from "./account.model";
 export class Item {
     // TODO: Add currency 
     public id: number;
+    public selected: boolean;
     public name: string;
     public date: Date;
     public price: number;
@@ -16,6 +17,7 @@ export class Item {
 
     constructor(data: Item) {
         this.id = data.id;
+        this.selected = data.selected;
         this.name = data.name;
         this.date = data.date;
         this.price = data.price;

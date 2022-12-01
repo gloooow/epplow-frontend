@@ -14,7 +14,7 @@
     </ng-container>
     <ng-container matColumnDef="balance">
         <th mat-header-cell *matHeaderCellDef> Balance </th>
-        <td mat-cell style="width: 10%;" *matCellDef="let element"> {{ element.balance }} </td>
+        <td mat-cell style="width: 10%;" *matCellDef="let element"> {{ element.balance?.toFixed(2) }} </td>
     </ng-container>
     <ng-container matColumnDef="currency">
         <th mat-header-cell *matHeaderCellDef> Currency </th>
@@ -22,7 +22,7 @@
     </ng-container>
     <ng-container matColumnDef="equivalent">
         <th mat-header-cell *matHeaderCellDef> Equivalent </th>
-        <td mat-cell style="width: 10%;" *matCellDef="let element"> {{ element.rate }} </td>
+        <td mat-cell style="width: 10%;" *matCellDef="let element"> {{ element.rate?.toFixed(2) }} </td>
     </ng-container>
     <ng-container matColumnDef="code">
         <th mat-header-cell *matHeaderCellDef> Code </th>

@@ -4,7 +4,7 @@ import { filter, map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Item } from '../models/item.model';
 import { AccountService } from './account.service';
-import { Account } from '../models/account.model';
+import { Account, ConvertionRate } from '../models/account.model';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +32,7 @@ constructor(
   }
 
   addItem(item: Item): Observable<Item> {
+    console.log(item.date);
     // modify balance of account then update account
     const account = this.accounts.find(a => a.id === item.account);
     if(account != undefined){
@@ -41,6 +42,9 @@ constructor(
     return this.http.post<Item>('http://localhost:8000/items/', item);
   }
 
+  updateItem(item: Item): Observable<Item> {
+    return this.http.put<Item>(`http://localhost:8000/items/${item.id}/`, item);
+  }
   getAll(tuFilter: any){
     var lcFilter = tuFilter.name.toLowerCase()? `&name=${tuFilter.name.toLowerCase()}`: '';
     if(tuFilter.date != null){
@@ -59,6 +63,20 @@ constructor(
       lcFilter += `&categories=${tuFilter.categories}`;
     }
     return this.http.get<Item[]>(`http://localhost:8000/items/?${lcFilter}`);
-
+  }
+  
+  transfer(from: number, to: number, balance: number, item: Item){
+    const accountFrom = this.accounts.find(a => a.id === from);
+    const accountTo = this.accounts.find(a => a.id === to);
+    if(accountFrom != undefined && accountTo != undefined){
+      this.accountService.getConversionRate(accountTo.currency).subscribe((rate: any) => {
+        accountFrom.balance -= balance;
+        accountTo.balance += balance * rate.rates.RON;
+        console.log(balance * rate.rates.RON);
+        this.accountService.updateAccount(accountFrom);
+        this.accountService.updateAccount(accountTo);
+      });
+      this.addItem(item).subscribe();
+    }
   }
 }

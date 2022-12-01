@@ -10,6 +10,7 @@ import { AccountService } from '../../../services/account.service';
 import { CategoryService } from '../../../services/category.service';
 import { ItemService } from '../../../services/item.service';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import { ItemsComponent } from '../items/items.component';
 
 @Component({
   selector: 'app-item-dialog',
@@ -25,8 +26,13 @@ export class ItemDialogComponent implements OnInit {
   categories: Category[] = new Array<Category>();
   categoryNames: string[] = new Array<string>();
 
+  from: number = 0;
+  to: number = 0;
+  minus = 1;
+
   item: Item = {
     id: 0,
+    selected: false,  
     name: '',
     price: 0,
     date: new Date(),
@@ -47,6 +53,7 @@ export class ItemDialogComponent implements OnInit {
     private accountService: AccountService,
     private accountCodeService: AccountCodeService,
     private categoryService: CategoryService,
+    private itemComponent: ItemsComponent,
     ) {}
 
   ngOnInit(): void {
@@ -55,13 +62,20 @@ export class ItemDialogComponent implements OnInit {
     this.loadCategories();
   }
   onSubmit(form: NgForm) {
-    form.value.total = (form.value.price + form.value.tax + form.value.spare);
-    if(form.value.type === 'EXPENSE'){
-      form.value.total = -form.value.total;
+    if(form.value.type === 'TRANSFER') {
+      this.itemService.transfer(this.from, this.to, form.value.price, form.value);
     }
-    this.itemService.addItem(form.value).subscribe(item => {
-      this.dialogRef.close();
-    });
+    else{
+      if(form.value.type === 'EXPENSE'){
+        this.minus = -1;
+      }
+      form.value.total = (form.value.price + form.value.tax + form.value.spare) * this.minus;
+
+      this.itemService.addItem(form.value).subscribe(item => {
+        this.dialogRef.close();
+        this.itemComponent.loadItems();
+      });
+    }
   }
   loadAccounts(){
     this.accountService.accounts.subscribe(accounts => {
