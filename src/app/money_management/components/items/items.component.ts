@@ -22,7 +22,7 @@ export class ItemsComponent implements OnInit {
         name: item.name,
         date: item.date,
         price: item.price,
-        spare: item.change,
+        spare: item.spare,
         tax: item.tax,
         total: item.total,
         currency: item.currency,

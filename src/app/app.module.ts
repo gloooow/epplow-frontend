@@ -52,7 +52,7 @@ import { AnalysisPageComponent } from './money_management/components/analysis-co
     HttpClientModule,
     MatAutocompleteModule,
     MatTableModule,
-
+    
     MatToolbarModule,
     MatIconModule,
     MatMenuModule,
